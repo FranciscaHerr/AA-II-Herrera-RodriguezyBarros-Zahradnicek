@@ -34,6 +34,7 @@ except (ValueError, ModuleNotFoundError, AttributeError):
 # Inicializar el agente
 agent = AgentClass(actions, game)
 agent.epsilon = 0
+list_rewards = []
 
 # Agente con acciones aleatorias
 while True:
@@ -49,5 +50,9 @@ while True:
         state_dict = env.getGameState()
         done = env.game_over()
         total_reward_episode += reward
-        time.sleep(0.03)
+        if class_name == 'QAgent':
+            time.sleep(0.03)
+    
+    list_rewards.append(total_reward_episode)
     print(f"Recompensa episodio: {total_reward_episode}")
+    print(f'Recompensa promedio total {sum(list_rewards)/len(list_rewards)}')

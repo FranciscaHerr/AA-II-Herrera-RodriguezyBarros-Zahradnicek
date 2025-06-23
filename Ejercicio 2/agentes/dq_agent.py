@@ -73,24 +73,17 @@ class QAgent(Agent):
         delta_y_norm = (delta_y + self.game_height) / (2 * self.game_height)
         delta_y_bin = int(np.clip(delta_y_norm * self.num_bins['delta_y'], 0, self.num_bins['delta_y'] - 1))
 
-        # 4. Bin a partir de la diferencia vertical entre el player y el centro del gap de la siguiente pipe
-        next_center_gap = state_dict['next_next_pipe_bottom_y'] - self.game_pipe_gap / 2
-        next_delta_y = next_center_gap - player_y
-
-        next_delta_y_norm = (next_delta_y + self.game_height) / (2 * self.game_height)
-        next_delta_y_bin = int(np.clip(next_delta_y_norm * self.num_bins['delta_y'], 0, self.num_bins['delta_y'] - 1))
-
-        # 5. Diferencia vertical entre el player y bottom
+        # 4. Diferencia vertical entre el player y bottom
         delta_bottom_y = state_dict['next_pipe_bottom_y'] - player_y
         delta_bottom_y_norm = (delta_bottom_y + self.game_height) / (2 * self.game_height)
         delta_bottom_y_bin = int(np.clip(delta_bottom_y_norm * self.num_bins['delta_y'], 0, self.num_bins['delta_y'] - 1))
 
-        # 6. Diferencia vertical entre el player y top
+        # 5. Diferencia vertical entre el player y top
         delta_top_y = state_dict['next_pipe_top_y'] - player_y
         delta_top_y_norm = (delta_top_y + self.game_height) / (2 * self.game_height)
         delta_top_y_bin = int(np.clip(delta_top_y_norm * self.num_bins['delta_y'], 0, self.num_bins['delta_y'] - 1))
 
-        # 7. Discretizar distancia entre el player y la pipe
+        # 6. Discretizar distancia entre el player y la pipe
         dist_x = state_dict['next_pipe_dist_to_player'] / self.game_width
         dist_x_bin = int(np.clip(dist_x * self.num_bins['delta_x'], 0, self.num_bins['delta_x'] - 1))
 
@@ -98,7 +91,6 @@ class QAgent(Agent):
             player_y_bin,
             player_velocity_bin,
             delta_y_bin,
-            next_delta_y_bin,
             delta_bottom_y_bin,
             delta_top_y_bin,
             dist_x_bin
