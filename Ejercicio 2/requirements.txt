@@ -1,0 +1,8 @@
+mock==1.0.1
+numpydoc
+Sphinx==1.2.3
+sphinx_rtd_theme
+numpy==2.2.6
+Pillow==11.2.1
+pygame==2.6.1
+tensorflow==2.18.0
